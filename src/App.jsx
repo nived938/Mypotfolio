@@ -1,0 +1,70 @@
+import { motion } from "framer-motion";
+import { FaGithub, FaUnity, FaReact, FaJs, FaPython, FaYoutube } from "react-icons/fa";
+import { SiAdobeaftereffects, SiAdobepremierepro, SiCapcut, SiBlender } from "react-icons/si";
+
+const projects = [
+  { name: "ConvertFlow", type: "WEB APP", text: "A file conversion platform with a modern frontend, backend API and app experience.", tag: "01" },
+  { name: "PlayOrg", type: "DEV TOOL", text: "A Render-style hosting project for deploying GitHub projects with ports and environment variables.", tag: "02" },
+  { name: "Kid Runner", type: "3D UNITY GAME", text: "A 3D runner game I built in Unity, focused on movement, gameplay and a complete playable experience.", media: "/games/gameplay1.mp4", tag: "03" },
+  { name: "Snow Runner", type: "3D UNITY GAME", text: "A Unity driving and 3D gameplay project made by me.", media: "/games/gameplay2.mp4", tag: "04" },
+  { name: "Chess", type: "2D GAME", text: "A chess game built with Python, Pygame and chess logic.", media: "/games/chess.png", tag: "05" },
+];
+
+const edits = ["/videos/edit1.mp4", "/videos/edit2.mp4", "/videos/edit3.mp4"];
+
+function SectionTitle({ number, title, children }) {
+  return <div className="section-head"><span>{number}</span><div><h2>{title}</h2>{children}</div></div>;
+}
+
+export default function App() {
+  return <main>
+    <nav className="nav">
+      <a className="logo" href="#top">N<span>.</span></a>
+      <div className="navlinks"><a href="#work">Work</a><a href="#games">Games</a><a href="#reels">Edits</a><a href="#about">About</a></div>
+      <a className="contact-pill" href="#contact">Let's talk ↗</a>
+    </nav>
+
+    <section id="top" className="hero">
+      <div className="hero-copy">
+        <motion.p className="eyebrow" initial={{opacity:0,x:-20}} animate={{opacity:1,x:0}}>CREATIVE DEVELOPER / EDITOR</motion.p>
+        <motion.h1 initial={{opacity:0,y:30}} animate={{opacity:1,y:0}} transition={{delay:.1}}>I build <i>digital</i><br/>things that move.</motion.h1>
+        <p className="hero-text">I'm Nived, a web developer, Unity game developer and video editor. I turn ideas into websites, games and visuals.</p>
+        <div className="hero-actions"><a className="black-btn" href="#work">Explore my work ↓</a><a className="line-btn" href="https://github.com/nived938" target="_blank" rel="noreferrer"><FaGithub/> GitHub</a></div>
+      </div>
+      <motion.div className="hero-visual" initial={{opacity:0,scale:.9,rotate:2}} animate={{opacity:1,scale:1,rotate:0}} transition={{duration:.8}}>
+        <div className="visual-top"><span>AVAILABLE FOR COOL PROJECTS</span><span>● 2026</span></div>
+        <div className="visual-grid"></div><div className="orb"></div>
+        <div className="visual-label"><b>WEB</b><b>GAME</b><b>EDIT</b></div>
+        <div className="visual-corner">NIVED<br/>CREATIVE LAB</div>
+      </motion.div>
+    </section>
+
+    <div className="ticker"><div>WEB DEVELOPMENT　✦　UNITY GAMES　✦　VIDEO EDITING　✦　3D　✦　WEB DEVELOPMENT　✦　UNITY GAMES　✦　VIDEO EDITING　✦　3D　✦</div></div>
+
+    <section id="work" className="section">
+      <SectionTitle number="01" title="Selected work"><p>Projects I actually built, from web platforms to game experiments.</p></SectionTitle>
+      <div className="project-grid">{projects.slice(0,2).map((p,i)=><ProjectCard key={p.name} p={p} featured={i===0}/>)}</div>
+    </section>
+
+    <section id="games" className="section dark-section">
+      <SectionTitle number="02" title="Game studio"><p>2D & 3D games made with Unity and other tools.</p></SectionTitle>
+      <div className="game-grid">{projects.slice(2).map(p=><ProjectCard key={p.name} p={p}/>)}</div>
+    </section>
+
+    <section id="reels" className="section">
+      <SectionTitle number="03" title="I edited these"><p>Real video work from my editing portfolio. Every cut and effect was edited by me.</p></SectionTitle>
+      <div className="reel-grid">{edits.map((src,i)=><div className="reel" key={src}><video src={src} controls muted playsInline preload="metadata"/><div><b>EDIT 0{i+1}</b><span>{["Cinematic / Color", "Gaming / Motion", "Story / VFX"][i]}</span></div></div>)}</div>
+      <div className="software"><span>TOOLS I USE</span><div><SiCapcut/><SiAdobepremierepro/><SiAdobeaftereffects/><SiBlender/></div></div>
+    </section>
+
+    <section id="about" className="about section">
+      <SectionTitle number="04" title="A little about me"><p>Developer mindset. Creator energy.</p></SectionTitle>
+      <div className="about-layout"><div className="big-copy">I don't just write code.<br/><em>I create experiences.</em></div><div className="about-copy"><p>I build responsive websites, interactive Unity games and edited video content. I enjoy taking a blank screen and turning it into something people can actually use, play or watch.</p><div className="skills"><span><FaReact/> React</span><span><FaJs/> JavaScript</span><span><FaUnity/> Unity / C#</span><span><FaPython/> Python</span></div></div></div>
+    </section>
+
+    <section id="contact" className="contact"><p className="eyebrow">05 / CONTACT</p><h2>Have an idea?<br/><i>Let's make it real.</i></h2><a href="mailto:nived938@gmail.com">nived938@gmail.com ↗</a><div className="social"><a href="https://github.com/nived938" target="_blank" rel="noreferrer"><FaGithub/> GitHub</a><a href="https://youtube.com/@powerplayexe" target="_blank" rel="noreferrer"><FaYoutube/> YouTube</a></div></section>
+    <footer>© 2026 NIVED <span>BUILT WITH CODE + CREATIVITY</span></footer>
+  </main>;
+}
+
+function ProjectCard({p,featured}) { return <motion.article className={`project-card ${featured?"featured":""}`} whileHover={{y:-8}}>{p.media ? (p.media.endsWith(".mp4") ? <video src={p.media} autoPlay muted loop playsInline/> : <img src={p.media} alt={p.name}/>) : <div className="project-art"><span>{p.name}</span><b>{p.tag}</b></div>}<div className="project-info"><span>{p.type}</span><h3>{p.name}</h3><p>{p.text}</p><a href={`https://github.com/nived938/${p.name === "ConvertFlow" ? "convertflow" : p.name === "PlayOrg" ? "Web-Host-Server" : p.name === "Kid Runner" ? "Kid-Runner-3d-unity" : p.name === "Snow Runner" ? "Snow-Runner-Game-unity" : "chess.com"}`} target="_blank" rel="noreferrer"><FaGithub/> View source ↗</a></div></motion.article> }
