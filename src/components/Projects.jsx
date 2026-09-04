@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
-import { ExternalLink, Github, Code2, Gamepad2, Server, Bot } from "lucide-react";
+import { ExternalLink, Code2, Gamepad2, Server, Bot } from "lucide-react";
+import { FaGithub } from "react-icons/fa";
 import { useState } from "react";
 
 const projects = [
@@ -26,7 +27,7 @@ export default function Projects(){
     <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-7">
       {filtered.map((p,i)=><motion.article key={p.title} initial={{opacity:0,y:45}} whileInView={{opacity:1,y:0}} viewport={{once:true,margin:"-80px"}} transition={{delay:i*.06}} whileHover={{y:-8}} className="group overflow-hidden rounded-3xl border border-white/10 bg-white/[.06] backdrop-blur-xl shadow-2xl">
         <div className="h-56 overflow-hidden relative bg-black">{p.image.endsWith('.mp4')?<video src={p.image} autoPlay muted loop playsInline className="w-full h-full object-cover"/>:<img src={p.image} alt={p.title} className="w-full h-full object-cover group-hover:scale-105 transition duration-700"/>}<div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent"/><div className="absolute bottom-4 left-4 flex items-center gap-2"><span className="p-2 rounded-xl bg-black/50 backdrop-blur">{p.icon}</span><span className="text-sm text-cyan-300">{p.category}</span></div></div>
-        <div className="p-6"><h3 className="text-2xl font-bold">{p.title}</h3><p className="text-gray-400 mt-3 leading-7">{p.description}</p><div className="flex gap-3 mt-6"><a href={p.github} target="_blank" rel="noreferrer" className="px-4 py-2.5 rounded-full bg-white/10 hover:bg-white/15 flex items-center gap-2"><Github size={17}/> Code</a>{p.demo!=="#"&&<a href={p.demo} target="_blank" rel="noreferrer" className="px-4 py-2.5 rounded-full bg-gradient-to-r from-cyan-500 to-purple-600 flex items-center gap-2"><ExternalLink size={17}/> Live</a>}</div></div>
+        <div className="p-6"><h3 className="text-2xl font-bold">{p.title}</h3><p className="text-gray-400 mt-3 leading-7">{p.description}</p><div className="flex gap-3 mt-6"><a href={p.github} target="_blank" rel="noreferrer" className="px-4 py-2.5 rounded-full bg-white/10 hover:bg-white/15 flex items-center gap-2"><FaGithub size={17}/> Code</a>{p.demo!=="#"&&<a href={p.demo} target="_blank" rel="noreferrer" className="px-4 py-2.5 rounded-full bg-gradient-to-r from-cyan-500 to-purple-600 flex items-center gap-2"><ExternalLink size={17}/> Live</a>}</div></div>
       </motion.article>)}
     </div>
   </section>;
