@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-import { ArrowDown, Github, Sparkles } from "lucide-react";
+import { ArrowDown, Sparkles } from "lucide-react";
 import Hero from "../components/Hero";
 import About from "../components/About";
 import Projects from "../components/Projects";
